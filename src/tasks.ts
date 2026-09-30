@@ -55,8 +55,7 @@ export function findTask(tasks: Task[], id: number): FindTaskResult {
 
   if (task === undefined) {
     return {
-      ok: false,
-      error: `Task with id ${id} was not found.`,
+      ok: false,error: `Task with id ${id} was not found.`,
     };
   }
 
