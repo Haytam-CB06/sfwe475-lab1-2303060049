@@ -1,0 +1,25 @@
+{
+  "name": "sfwe475-lab1-2303060049",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "start": "tsx src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haytam-CB06/sfwe475-lab1-2303060049.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Haytam-CB06/sfwe475-lab1-2303060049/issues"
+  },
+  "homepage": "https://github.com/Haytam-CB06/sfwe475-lab1-2303060049#readme",
+  "description": "",
+  "devDependencies": {
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
