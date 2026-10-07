@@ -21,5 +21,10 @@
   "devDependencies": {
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "run": "^2.1.7",
+    "typecheck": "^0.1.2",
+    "zod": "^4.6.5"
   }
 }

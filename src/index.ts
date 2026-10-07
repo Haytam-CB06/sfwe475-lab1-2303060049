@@ -1,31 +1,38 @@
-import { addTask, findTask, Task } from "./tasks";
+import { fetchTodo } from "./api";
+import { createTask } from "./createTask";
+import { TaskSchema } from "./schemas";
 
-let tasks: Task[] = [];
+async function main() {
+  const todo = await fetchTodo(1);
+  console.log("Fetched task:", todo);
 
-tasks = addTask(tasks, "Read Chapter 1");
-tasks = addTask(tasks, "Finish assignment");
+  const valid = { id: 1, title: "Read", done: false };
+  const missingField = { id: 2, done: true };
+  const wrongType = { id: 3, title: "Write", done: "yes" };
 
-console.log(tasks);
+  for (const candidate of [valid, missingField, wrongType]) {
+    const result = TaskSchema.safeParse(candidate);
+    console.log(
+      result.success,
+      result.success ? "" : result.error.issues,
+    );
+  }
 
-const foundTask = findTask(tasks, 1);
+  const payloads: unknown[] = [
+    { id: 4, title: "Review notes", done: false },
+    { id: 5, done: false },
+    { id: 6, title: "Practice", done: "no" },
+  ];
 
-if (foundTask) {
-  console.log(foundTask);
-} else {
-  console.log("Task not found.");
+  for (const payload of payloads) {
+    const result = createTask(payload);
+
+    if (result.ok) {
+      console.log("Created task:", result.task);
+    } else {
+      console.error("Could not create task:", result.error);
+    }
+  }
 }
 
-const missingTask = findTask(tasks, 99);
-
-if (missingTask) {
-  console.log(missingTask);
-} else {
-  console.log("Task with id 99 was not found.");
-}
-const result = findTask(tasks, 99);
-
-if (result.ok) {
-  console.log(result.task);
-} else {
-  console.log(result.error);
-}
+main();
